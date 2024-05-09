@@ -29,6 +29,7 @@ public class ClienteResource {
 
         return ResponseEntity.created(headerLocation).build();
     }
+
     @GetMapping
     public ResponseEntity<Cliente> dadosCliente(@RequestParam("cpf") String cpf) {
         var cliente = clienteService.getByCPF(cpf);
