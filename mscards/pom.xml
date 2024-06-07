@@ -11,12 +11,15 @@
 	<groupId>io.github</groupId>
 	<artifactId>mscards</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>mscards</name>
 	<description>Cards</description>
+
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.2</spring-cloud.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
