@@ -23,13 +23,6 @@ public class ClienteResource {
     public ResponseEntity save(@RequestBody ClienteSaveRequest request) {
 
         Cliente  cliente = request.toModel();
-
-        Address address = AddressBuilder.builder()
-                .complement("")
-                .street("")
-                .build();
-
-        cliente.getAddresses().add(address);
         clienteService.save(cliente);
 
         URI headerLocation = ServletUriComponentsBuilder.fromCurrentRequest()
