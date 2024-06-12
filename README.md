@@ -81,6 +81,7 @@ docker run --name ms-credito-rabbitmq -p 5672:5672 -p 15672:15672 --network ms-c
 docker run --name ms-credito-eurekaserver -p 8761:8761 --network ms-credito-network eurekaserver
 docker run --name ms-credito-clientes --network ms-credito-network -e EUREKA_SERVER=ms-credito-eurekaserver -d mscliente
 docker run --name ms-credito-cartao --network ms-credito-network -e RABBITMQ_SERVER=ms-credito-rabbitmq -e EUREKA_SERVER=ms-credito-eurekaserver -d mscartao
+docker run --name ms-bookstore --network ms-bookstore -e RABBITMQ_SERVER=ms-bookstore-rabbitmq -e EUREKA_SERVER=ms-bookstore-eurekaserver -d
 docker run --name ms-credito-avaliadorcredito --network ms-credito-network -e RABBITMQ_SERVER=ms-credito-rabbitmq -e EUREKA_SERVER=ms-credito-eurekaserver -d msavaliadorcredito
 
 ```
