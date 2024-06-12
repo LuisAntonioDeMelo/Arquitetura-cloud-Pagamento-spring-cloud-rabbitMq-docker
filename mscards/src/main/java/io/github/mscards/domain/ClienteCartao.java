@@ -16,9 +16,9 @@ public class ClienteCartao {
 
     @ManyToOne
     @JoinColumn(name = "id_cartao")
-    private String cpf;
-
     private Cartao cartao;
+
+    private String cpf;
 
     private BigDecimal limite;
 }
