@@ -1,6 +1,7 @@
 package com.msavaliadorcredito.application;
 
 import com.msavaliadorcredito.domain.model.SituacaoCliente;
+import com.msavaliadorcredito.infra.clients.DadosClienteNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,9 @@ public class AvaliadorCreditoController {
     private final AvaliadorCreditoService avaliadorCreditoService;
 
     @GetMapping(value = "situacao-cliente", params = "cpf")
-    public ResponseEntity<SituacaoCliente> consultaSituacaoCliente(@RequestParam("cpf") String cpf) {
+    public ResponseEntity<SituacaoCliente> consultaSituacaoCliente(@RequestParam("cpf") String cpf) throws DadosClienteNotFoundException {
         SituacaoCliente  situacaoCliente = avaliadorCreditoService.obterSituacaoCliente(cpf);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(situacaoCliente);
     }
 
 }
