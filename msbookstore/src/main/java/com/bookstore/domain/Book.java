@@ -44,8 +44,11 @@ public class Book extends Product implements Serializable {
 
     @Override
     public BigDecimal calculatePriceBasedOnSubProduct() {
-        getRate();
-        return salePrice.multiply(interestRate.subtract(BigDecimal.valueOf(0.02))); //desconto por ser livros
+        if(getStockQuantity() > 20) {
+            getRate();
+            return salePrice.multiply(interestRate.subtract(BigDecimal.valueOf(0.02))); //desconto por ser livros
+        }
+       return super.calculatePriceBasedOnSubProduct();
     }
 
 
