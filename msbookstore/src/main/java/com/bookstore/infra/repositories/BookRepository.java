@@ -15,4 +15,5 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
     @Query(value = "SELECT * FROM tb_book WHERE publisher_id = :id ", nativeQuery = true)
     List<Book> findBooksByPublisherId(@Param("id") UUID id);
 
+    List<Book> findByActiveTrue();
 }

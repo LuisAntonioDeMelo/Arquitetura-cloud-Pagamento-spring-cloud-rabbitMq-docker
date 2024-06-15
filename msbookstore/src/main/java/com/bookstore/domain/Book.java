@@ -1,19 +1,27 @@
 package com.bookstore.domain;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
+
 @Entity
 @Table(name = "TB_BOOK")
-public class Book implements Serializable {
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class Book extends Product implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID uiud;
+
     @Column(nullable = false, unique = true)
     private String title;
 
@@ -32,43 +40,22 @@ public class Book implements Serializable {
     @OneToOne(mappedBy = "book", cascade = CascadeType.ALL)
     private Review review;
 
-    public UUID getId() {
-        return id;
+    private Integer bestSellerRate;
+
+    @Override
+    public BigDecimal calculatePriceBasedOnSubProduct() {
+        getRate();
+        return salePrice.multiply(interestRate.subtract(BigDecimal.valueOf(0.02))); //desconto por ser livros
     }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Publisher getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Publisher publisher) {
-        this.publisher = publisher;
-    }
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public Review getReview() {
-        return review;
-    }
-
-    public void setAuthors(Set<Author> authors) {
-        this.authors = authors;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
+    private void getRate() {
+        switch (bestSellerRate) {
+            case 1 -> setInterestRate(BigDecimal.valueOf(1));
+            case 2 -> setInterestRate(BigDecimal.valueOf(2));
+            case 3 -> setInterestRate(BigDecimal.valueOf(3));
+           default -> {
+           }
+       };
     }
 }

@@ -1,4 +1,4 @@
-package com.bookstore.application.services.records;
+package com.bookstore.application.records;
 
 import java.util.Set;
 import java.util.UUID;
