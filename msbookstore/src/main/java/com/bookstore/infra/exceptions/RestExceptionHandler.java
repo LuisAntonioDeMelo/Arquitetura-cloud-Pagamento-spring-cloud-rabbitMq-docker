@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,7 +38,7 @@ public class RestExceptionHandler {
         return new ResponseEntity<>(apiError, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<ApiError> unavaibleException(Exception ex) {
         ApiError apiError = new ApiError(
                 LocalDateTime.now(),

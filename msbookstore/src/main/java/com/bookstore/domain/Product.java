@@ -12,7 +12,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @EqualsAndHashCode
-public abstract class Product {
+public class Product {
     private static final Integer LOW_STOCK_THRESHOLD = 10;
     private static final Double COST_MORE = 1.25;
 

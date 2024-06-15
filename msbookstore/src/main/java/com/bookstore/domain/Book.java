@@ -18,8 +18,7 @@ import java.util.UUID;
 public class Book extends Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private UUID uiud;
 
     @Column(nullable = false, unique = true)
