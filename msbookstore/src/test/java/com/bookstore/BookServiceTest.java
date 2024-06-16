@@ -18,9 +18,7 @@ public class BookServiceTest {
     private BookService bookService;
 
     private Book book;
-    public BookServiceTest() {
-
-    }
+    public BookServiceTest() {}
 
 
     @Test

@@ -32,6 +32,7 @@ public class CartoesResourse {
         return ResponseEntity.ok(list);
     }
 
+    @GetMapping(params = "cpf")
     public ResponseEntity<List<CartoesPorClientesResponse>> getCartoesByCliente(@RequestParam("cpf") String cpf) {
         List<ClienteCartao> listaCartoes = clienteCartaoService.listCartoesByCpf(cpf);
         List<CartoesPorClientesResponse> resultList = listaCartoes.stream()
