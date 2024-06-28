@@ -26,7 +26,7 @@ public class ClienteResource {
     private final ClienteService clienteService;
 
     @PostMapping
-    public ResponseEntity save(@RequestBody ClienteSaveRequest request) {
+    public ResponseEntity<?> save(@RequestBody ClienteSaveRequest request) {
 
         Cliente  cliente = request.toModel();
         clienteService.save(cliente);
