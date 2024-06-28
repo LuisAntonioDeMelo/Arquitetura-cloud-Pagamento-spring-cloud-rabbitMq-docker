@@ -8,12 +8,14 @@ import io.github.mscards.domain.DadosSolicitacaoEmissaoCartao;
 import io.github.mscards.infra.repository.CartaoRepository;
 import io.github.mscards.infra.repository.ClienteCartaoRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class EmissaoCartaoSubscriber {
 
     private final CartaoRepository cartaoRepository;
@@ -33,7 +35,7 @@ public class EmissaoCartaoSubscriber {
 
             clienteCartaoRepository.save(clienteCartao);
         } catch (JsonProcessingException e) {
-            e.printStackTrace();//log
+          log.error("Erro ao processar Json, verifique sua fila ou com metodo publisher : {}", e.getMessage());
         }
     }
 
