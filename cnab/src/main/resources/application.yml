@@ -1,13 +1,18 @@
 spring:
   application:
-    name: mscards
-  rabbitmq:
-    host: ${RABBIT_MQ_SERVER}
-    port: 5672
-    username: guest
-    password: guest
-  jpa:
-    show-sql: true
+    name: ms-cnab
+  datasource:
+    url : jdbc:h2:file:./data/db
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+    enabled: true
+    batch:
+      jdbc:
+      initilize-schema: always
+    sql:
+      init:
+        mode: always
 
 server:
   port: 0
